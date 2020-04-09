@@ -1,0 +1,68 @@
+wepo steppers.val,10  //10-13
+
+wepo bt24.val,20    // Store 24 hours State.
+
+wepo btdst.val,30  // Store Summer Time State.
+
+wepo sound.val,40   // Store Sound State
+
+wepo mer_flip.val,50   // Store Meridian Flip State
+
+wepo fan1.val,60       // Store Fan1 Power State
+
+wepo fan2.val,70       // Store Fan2 Power State
+
+wepo celestial.val,80  // Store Celestial Tracking Mode State
+
+wepo lunar.val,90     // Store Lunar Tracking Mode State
+
+wepo solar.val,100     // Store Solar Tracking Mode State
+
+wepo mer_auto.val,110  // Store Auto Meridian Flip State
+
+wepo mer_off.val,120 // Store Meridian Off State
+
+wepo opt_F_motor.val,130 // Store Heater Power Satate 
+
+wepo night0.val,140      // / night mode page Boot
+
+wepo night1.val,150    // night mode page GPS
+
+wepo night2.val,160    // night mode page Time set
+
+wepo night3.val,170    // night mode page Alignment
+
+wepo night4.val,180    // night mode page Sync
+
+wepo night5.val,190   // night mode page Manual_Align
+
+wepo night6.val,200   // night mode page Main
+
+wepo night7.val,210   // night mode page Menu
+
+wepo night8.val,220   // night mode Load
+
+wepo night9.val,230   // night mode page Options
+
+wepo night10.val,240  // night Mode page Coordinates
+
+wepo night11.val,250  // night Mode page Stat
+
+wepo night12.val,255  // night Mode page Autoguiding
+
+wepo alignType.val,260 // Align Type page Alignment to be used by sync screen
+
+wepo field.val,270   // Store filed value of Page AstroTools  
+
+wepo focalLength.val,280 // Store focal Length value
+
+wepo aperture.val,290 // Store aperture value
+
+wepo epFOV.val,300 // Store Eypiece Field of View
+
+wepo epFocalL.val,310// Store Eypiece Focal Length
+
+wepo barlow.val,320 // Store the value of Barlow Lens
+
+wepo tftTout.val,330 // Store TFT TimeOut in Options Screen
+
