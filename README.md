@@ -1,7 +1,7 @@
 # rDUINOScope-V2.3.1-Boiana-EQ-Nextion-5-Enhanced-Version
 
 
-A modified version of rDUINOScope that works with Nextion Enhanced 5" TFT, Updated to the latest firmware version V_2.3.1.
+A modified version of rDUINOScope that works with Nextion Enhanced 5" TFT, Updated to the latest firmware version Boiana-EQ V_2.3.1.
 ===========================================================
 * Corrected Solar System Objects bug from last update. Thanks to (Aitor Plazaola Alcerreca) From the rDUINOScope Support Group.
 * Support for Stellarium Mobile Plus has been added.
