@@ -37,7 +37,7 @@
 // Make sure you edit the NexConfig.h file on the library folder to set the correct serial port for the display.
 // By default it's set to Serial1.
 
-const String FirmwareDate = "16/2/2020";
+const String FirmwareDate = "10/4/2020";
 const String FirmwareNumber = "v2.3.1 Boiana-EQ-Nextion-Solar&AutoGuiding";
 const String FirmwareName = "rDUINOScope Boiana-EQ V2.3.1";
 const String FirmwareTime = "12:00:00";
