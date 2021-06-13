@@ -10,6 +10,20 @@ void nex_attach_pages() {
   // Time Page Touch Buttons
   save_button.attachPush(save_buttonPushCallback);
   btdst.attachPush(btdstPushCallback);
+
+  day_up.attachPush(day_upPushCallback);
+  day_down.attachPush(day_downPushCallback);
+  month_up.attachPush(month_upPushCallback);
+  month_down.attachPush(month_downPushCallback);
+  year_up.attachPush(year_upPushCallback);
+  year_down.attachPush(year_downPushCallback);
+  hour_up.attachPush(hour_upPushCallback);
+  hour_down.attachPush(hour_downPushCallback);
+  minute_up.attachPush(minute_upPushCallback);
+  minute_down.attachPush(minute_downPushCallback);
+  second_up.attachPush(second_upPushCallback);
+  second_down.attachPush(second_downPushCallback);
+
   // Confirm Sun Tracking Page Touch Buttons
   sun_track_yes.attachPush(sun_track_yesPushCallback);
   sun_track_no.attachPush(sun_track_noPushCallback);
@@ -208,27 +222,75 @@ void btdstPushCallback(void *ptr) // If Sound ON/OFF Button Touched
   }
 }
 
+void day_upPushCallback(void *ptr)  // If BTN day_up Touched
+{
+  IS_Time_Changed = true;
+}
+void day_downPushCallback(void *ptr)  // If BTN day_down Touched
+{
+  IS_Time_Changed = true;
+}
+void month_upPushCallback(void *ptr)  // If BTN month_up Touched
+{
+  IS_Time_Changed = true;
+}
+void month_downPushCallback(void *ptr)  // If BTN month_down Touched
+{
+  IS_Time_Changed = true;
+}
+void year_upPushCallback(void *ptr)  // If BTN year_up Touched
+{
+  IS_Time_Changed = true;
+}
+void year_downPushCallback(void *ptr)  // If BTN year_down Touched
+{
+  IS_Time_Changed = true;
+}
+void hour_upPushCallback(void *ptr)  // If BTN hour_up Touched
+{
+  IS_Time_Changed = true;
+}
+void hour_downPushCallback(void *ptr)  // If BTN hour_down Touched
+{
+  IS_Time_Changed = true;
+}
+void minute_upPushCallback(void *ptr)  // If BTN minute_up Touched
+{
+  IS_Time_Changed = true;
+}
+void minute_downPushCallback(void *ptr)  // If BTN minute_down Touched
+{
+  IS_Time_Changed = true;
+}
+void second_upPushCallback(void *ptr)  // If BTN second_up Touched
+{
+  IS_Time_Changed = true;
+}
+void second_downPushCallback(void *ptr)  // If BTN second_down Touched
+{
+  IS_Time_Changed = true;
+}
+
 void save_buttonPushCallback(void *ptr)  // If BTN Save Touched
 {
   if (IS_SOUND_ON) {
     SoundOn(800, 8);
   }
-  int changes = 0;
-  for (int y = 0; y < 12; y++)
-  {
-    if (w_DateTime[y] != 0)
-    {
-      changes = 1;
-    }
-  }
-  if (changes == 1)
+
+  if (IS_Time_Changed == true)
   {
     // Do the magic as the date and time has been updated... Update the RTC accordingly
-    int hh = (w_DateTime[8] * 10)   + w_DateTime[9];
-    int mm = (w_DateTime[10] * 10)  + w_DateTime[11];
-    int dd = (w_DateTime[0] * 10)   + w_DateTime[1];
-    int mo = (w_DateTime[2] * 10)   + w_DateTime[3];
-    int yy = (w_DateTime[4] * 1000) + (w_DateTime[5] * 100) + (w_DateTime[6] * 10) + w_DateTime[7];
+    uint32_t hh = 0 ;
+    hour_set.getValue(&hh);
+    uint32_t mm = 0;
+    minute_set.getValue(&mm);
+    uint32_t dd = 0;
+    day_set.getValue(&dd);
+    uint32_t mo = 0;
+    month_set.getValue(&mo);
+    uint32_t yy = 0;
+    year_set.getValue(&yy);
+
     rtc.setTime(hh, mm, 00);
     rtc.setDate(dd, mo, yy);
   }
@@ -1098,9 +1160,9 @@ void opt_F_motorPushCallback(void *ptr) // If Button Heater ON/OFF Touched >> No
 void opt_mer_autoPushCallback(void *ptr) // If Button Meridian flip Auto Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   IS_MERIDIAN_FLIP_AUTOMATIC = true;
   Mer_Flip_State = "AUTO";
   updateMeridianFlip_opt();
@@ -1109,9 +1171,9 @@ void opt_mer_autoPushCallback(void *ptr) // If Button Meridian flip Auto Touched
 void opt_mer_offPushCallback(void *ptr) // If Button Meridian flip OFF Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   IS_MERIDIAN_FLIP_AUTOMATIC = false;
   Mer_Flip_State = "OFF";
   updateMeridianFlip_opt();
@@ -1120,9 +1182,9 @@ void opt_mer_offPushCallback(void *ptr) // If Button Meridian flip OFF Touched
 void opt_celestialPushCallback(void *ptr) // If Button Celestial Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   Tracking_type = 1;
   Tracking_Mode = "Celest";
   updateTrackingMode_opt();
@@ -1131,9 +1193,9 @@ void opt_celestialPushCallback(void *ptr) // If Button Celestial Touched
 void opt_solarPushCallback(void *ptr)  // If Button Solar Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   Tracking_type = 2;
   Tracking_Mode = "Solar";
   updateTrackingMode_opt();
@@ -1142,9 +1204,9 @@ void opt_solarPushCallback(void *ptr)  // If Button Solar Touched
 void opt_lunarPushCallback(void *ptr) // If Button Lunar Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   Tracking_type = 0;
   Tracking_Mode = "Lunar";
   updateTrackingMode_opt();
@@ -1153,9 +1215,9 @@ void opt_lunarPushCallback(void *ptr) // If Button Lunar Touched
 void optClock_alignPushCallback(void *ptr) // If Button GPS Clock Align Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   storeOptions_SD();
   CURRENT_SCREEN = 0;
   drawGPSScreen();
@@ -1166,9 +1228,9 @@ void optClock_alignPushCallback(void *ptr) // If Button GPS Clock Align Touched
 void align1StarPushCallback(void *ptr)  // If 1Star Alignment button touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   ALLIGN_TYPE = 1;
   is_btn_pressed = false;
   drawAlignObjects_ali();
@@ -1177,9 +1239,9 @@ void align1StarPushCallback(void *ptr)  // If 1Star Alignment button touched
 void iterativeAlignPushCallback(void *ptr)  // If Iterative Alignment button touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   ALLIGN_TYPE = 3;
   is_btn_pressed = false;
   // I'll take some time to Initialize the Sub ARRAY with suitable stars (only for Northern Hemi)
@@ -1224,9 +1286,9 @@ void iterativeAlignPushCallback(void *ptr)  // If Iterative Alignment button tou
 void skip_alignPushCallback(void *ptr)  // If SKIP button touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   IS_IN_OPERATION = true;
   drawMainScreen();
 
@@ -1246,11 +1308,11 @@ void sync_alignPushCallback(void *ptr)  // If Sync button touched
   // Here we need to know which Star is this - 1st, 2nd, 3rd... etc ?
   // In order to use Ralph Pass alignment procedure described on http://rppass.com/
   // http://rppass.com/align.pdf - the actual PDF
- 
+
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   if (ALLIGN_STEP == 1) // If in 1Star Alignment Method Step1
   {
     if (ALLIGN_TYPE == 1) // If in 1Star Alignment Method
@@ -1347,9 +1409,9 @@ void sync_alignPushCallback(void *ptr)  // If Sync button touched
 void repeat_alignPushCallback(void *ptr)  // If BTN Repeat/ EXIT is touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   if (ALLIGN_TYPE == 3) // If Button <Repeat / EXIT is Pressed in Iterative Alignment Method
   {
     // delta_a_RA = 0;
@@ -1373,9 +1435,9 @@ void repeat_alignPushCallback(void *ptr)  // If BTN Repeat/ EXIT is touched
 void  sync_donePushCallback(void *ptr) // If Button done Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   is_btn_pressed = false;
   IS_IN_OPERATION = true;
   drawMainScreen();
@@ -1384,9 +1446,9 @@ void  sync_donePushCallback(void *ptr) // If Button done Touched
 void sync_nextPushCallback(void *ptr) // If Button Next Touched
 {
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
-    
+    SoundOn(800, 8);
+  }
+
   is_btn_pressed = false;
   int do_kolko = 0;
   if (ALLIGN_TYPE == 3)
@@ -1415,8 +1477,8 @@ void  sync_prevPushCallback(void *ptr) // If Button Prev touched
 {
   // BTN <prev pressed
   if (IS_SOUND_ON) {
-      SoundOn(800, 8);
-    }
+    SoundOn(800, 8);
+  }
 
   is_btn_pressed = false;
   int do_kolko = 0;
@@ -1444,7 +1506,7 @@ void  sync_prevPushCallback(void *ptr) // If Button Prev touched
 
 //////////////////////////////////////////// Sync Text Boxes Touch Events
 void sync_obj_1PushCallback(void *ptr)
-{    
+{
   is_btn_pressed = true;
   sync_object = 1;
 }
