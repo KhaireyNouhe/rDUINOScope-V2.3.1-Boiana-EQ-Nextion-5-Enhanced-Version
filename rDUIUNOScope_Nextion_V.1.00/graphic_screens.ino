@@ -1159,6 +1159,8 @@ void drawSTATScreen() {
 void drawAlignObjects_ali()
 {
   CURRENT_SCREEN = 12;
+  Serial.print("Stars Pager = ");
+  Serial.println(STARS_PAGER);
   Sync.show();    // >>> Nextion Show Page Sync
 
   if (ALLIGN_TYPE == 3)         // If I'm in the Iterative Alignment Page
