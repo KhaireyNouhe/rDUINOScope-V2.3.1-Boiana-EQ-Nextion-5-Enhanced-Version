@@ -228,7 +228,7 @@ void considerTouchInput()
                   Serial1.write(0xff);
                   break;
                 case 10:
-                  Tracking_type = 0; // Preparar el seguimiento que se usara, 1: Sidereal, 2: Solar, 0: Lunar;
+                  Tracking_type = 0; // Change the tracking type Automatically. 1: Sidereal, 2: Solar, 0: Lunar;
                   Tracking_Mode = "Lunar";
                   updateTrackingMode_opt();
                   opt_celestial.setValue(0);
@@ -248,7 +248,7 @@ void considerTouchInput()
                   Serial1.write(0xff);
                   break;
                 default:
-                  Tracking_type = 1; // Preparar el seguimiento que se usara, 1: Sidereal, 2: Solar, 0: Lunar;
+                  Tracking_type = 1; // Change the tracking type Automatically. 1: Sidereal, 2: Solar, 0: Lunar;
                   Tracking_Mode = "Celest";
                   updateTrackingMode_opt();
                   opt_celestial.setValue(1);
@@ -272,7 +272,6 @@ void considerTouchInput()
               Slew_RA_timer = Slew_timer + 20000;   // Give 20 sec. advance to the DEC. We will revise later.
             }
             UpdateObservedObjects();
-            //CUSTOM_PAGER == 0;
             sun_confirm = false;
             drawMainScreen();
           }
@@ -332,7 +331,6 @@ void considerTouchInput()
           Slew_RA_timer = Slew_timer + 20000;   // Give 20 sec. advance to the DEC. We will revise later.
         }
         UpdateObservedObjects();
-        CUSTOM_PAGER == 0;
         sun_confirm = false;
         drawMainScreen();
       }
