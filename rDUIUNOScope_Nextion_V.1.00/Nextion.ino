@@ -350,7 +350,7 @@ void main_LoadPushCallback(void *ptr)  // If LOAD button touched
   }
 
   if (CURRENT_SCREEN == 4) {
-    if (IS_BT_MODE_ON == false) {  // If LOAD Button Touched
+    if (IS_BT_MODE_ON == false) {
 
       if (IS_STEPPERS_ON == true) {
         CURRENT_SCREEN = 6;
@@ -603,10 +603,10 @@ void load_messierPushCallback(void *ptr) // If BTN Messier Touched
   MESS_PAGER = 0; // We're in page 1
   is_btn_pressed = false;
   //drawLoadObjects();
-  Serial.println("Load Selector= ");
-  Serial.print(LOAD_SELECTOR);
-  Serial.println("Mess Pager = ");
-  Serial.print(MESS_PAGER);
+  Serial.print("Load Selector= ");
+  Serial.println(LOAD_SELECTOR);
+  Serial.print("Mess Pager = ");
+  Serial.println(MESS_PAGER);
 }
 
 void load_treasuresPushCallback(void *ptr) // If BTN Treasures Touched
@@ -620,20 +620,21 @@ void load_treasuresPushCallback(void *ptr) // If BTN Treasures Touched
   TREAS_PAGER = 0; // We're in page 1
   is_btn_pressed = false;
   //drawLoadObjects();
-  Serial.println("Load Selector= ");
-  Serial.print(LOAD_SELECTOR);
-  Serial.println("Treas Pager = ");
-  Serial.print(TREAS_PAGER);
+  Serial.print("Load Selector= ");
+  Serial.println(LOAD_SELECTOR);
+  Serial.print("Treas Pager = ");
+  Serial.println(TREAS_PAGER);
 }
 void load_solar_sysPushCallback(void *ptr) // If BTN Solar Sys Touched
 {
   if (IS_SOUND_ON) {
     SoundOn(800, 8);
   }
-
   // BTN Solar System Touched
   LOAD_SELECTOR = 3;
   is_btn_pressed = false;
+  Serial.print("Load Selector= ");
+  Serial.println(LOAD_SELECTOR);
   //drawLoadObjects();
 }
 void load_cust_csvPushCallback(void *ptr) // If BTN CUST CSV Touched
@@ -645,6 +646,8 @@ void load_cust_csvPushCallback(void *ptr) // If BTN CUST CSV Touched
   // BTN custom.csv touched
   LOAD_SELECTOR = 4;
   is_btn_pressed = false;
+  Serial.print("Load Selector= ");
+  Serial.println(LOAD_SELECTOR);
   //drawLoadObjects();
 }
 
@@ -664,7 +667,7 @@ void load_nextPushCallback(void *ptr) // If BTN Next Touched
     SoundOn(800, 8);
   }
 
-  if (LOAD_SELECTOR == 1)
+  if (LOAD_SELECTOR == 1) // if we're in page Messier
   {
     MESS_PAGER += 1;
     if (MESS_PAGER <= 3)
@@ -675,12 +678,12 @@ void load_nextPushCallback(void *ptr) // If BTN Next Touched
     {
       MESS_PAGER = 3;
     }
-    Serial.println("Load Selector= ");
-    Serial.print(LOAD_SELECTOR);
-    Serial.println("MESS_PAGER = ");
-    Serial.print(MESS_PAGER);
+    Serial.print("Load Selector= ");
+    Serial.println(LOAD_SELECTOR);
+    Serial.print("MESS_PAGER = ");
+    Serial.println(MESS_PAGER);
   }
-  else if (LOAD_SELECTOR == 2)
+  else if (LOAD_SELECTOR == 2)// if we're in page Treasures
   {
     TREAS_PAGER += 1;
     if (TREAS_PAGER <= 3)
@@ -691,12 +694,11 @@ void load_nextPushCallback(void *ptr) // If BTN Next Touched
     {
       TREAS_PAGER = 3;
     }
+    Serial.print("Load Selector= ");
+    Serial.println(LOAD_SELECTOR);
+    Serial.print("TREAS_PAGER = ");
+    Serial.println(TREAS_PAGER);
   }
-  Serial.println("Load Selector= ");
-  Serial.print(LOAD_SELECTOR);
-  Serial.println("TREAS_PAGER = ");
-  Serial.print(TREAS_PAGER);
-
 }
 
 void load_prevPushCallback(void *ptr) // If BTN Prev Touched
@@ -705,7 +707,7 @@ void load_prevPushCallback(void *ptr) // If BTN Prev Touched
     SoundOn(800, 8);
   }
 
-  if (LOAD_SELECTOR == 1)
+  if (LOAD_SELECTOR == 1)// if we're in page Messier
   {
     MESS_PAGER -= 1;
     if (MESS_PAGER >= 0)
@@ -716,8 +718,12 @@ void load_prevPushCallback(void *ptr) // If BTN Prev Touched
     {
       MESS_PAGER = 0;
     }
+    Serial.print("Load Selector= ");
+    Serial.println(LOAD_SELECTOR);
+    Serial.print("MESS_PAGER = ");
+    Serial.println(MESS_PAGER);
   }
-  else if (LOAD_SELECTOR == 2)
+  else if (LOAD_SELECTOR == 2)// if we're in page Treasures
   {
     TREAS_PAGER -= 1;
     if (TREAS_PAGER >= 0)
@@ -728,6 +734,10 @@ void load_prevPushCallback(void *ptr) // If BTN Prev Touched
     {
       TREAS_PAGER = 0;
     }
+    Serial.print("Load Selector= ");
+    Serial.println(LOAD_SELECTOR);
+    Serial.print("TREAS_PAGER = ");
+    Serial.println(TREAS_PAGER);
   }
 }
 
@@ -1233,6 +1243,7 @@ void align1StarPushCallback(void *ptr)  // If 1Star Alignment button touched
 
   ALLIGN_TYPE = 1;
   is_btn_pressed = false;
+  STARS_PAGER = 0;
   drawAlignObjects_ali();
 }
 
@@ -1280,6 +1291,7 @@ void iterativeAlignPushCallback(void *ptr)  // If Iterative Alignment button tou
     int_star_count = floor(cc / 15) + 1;
   }
   delay(500);
+  STARS_PAGER = 0;
   drawAlignObjects_ali();
 }
 
@@ -1426,6 +1438,7 @@ void repeat_alignPushCallback(void *ptr)  // If BTN Repeat/ EXIT is touched
   {
     ALLIGN_STEP -= 1; // If Button <REPEAT / Exit is Pressed in 1Star Alignment Method
     is_btn_pressed = false;
+    STARS_PAGER = 0;
     drawAlignObjects_ali();
   }
 }
@@ -1451,26 +1464,27 @@ void sync_nextPushCallback(void *ptr) // If Button Next Touched
 
   is_btn_pressed = false;
   int do_kolko = 0;
-  if (ALLIGN_TYPE == 3)
+  if (ALLIGN_TYPE == 3)      // If Align Type is Iterative Alignment
   {
     do_kolko = int_star_count;
     if (STARS_PAGER <= do_kolko - 3) {
       STARS_PAGER += 1;
       drawAlignObjects_ali();
-      Serial.println("int_star_count = ");
+      Serial.print("int_star_count = ");
       Serial.println(int_star_count);
     }
-  } else if (ALLIGN_TYPE == 1)
+  } else if (ALLIGN_TYPE == 1)   // If Align Type is 1Star Alignment
   {
-    do_kolko = 9; // 9 Pages of Stars
+    do_kolko = 8; // 8 Pages of Stars
     STARS_PAGER += 1;
-    if ( STARS_PAGER >= 9)
+    if ( STARS_PAGER >= 8)
     {
-      STARS_PAGER = 9;
+      STARS_PAGER = 8;
     }
+    Serial.print("Stars Pager = ");
+    Serial.println(STARS_PAGER);
   }
-  Serial.println("Stars Pager = ");
-  Serial.println(STARS_PAGER);
+
 }
 
 void  sync_prevPushCallback(void *ptr) // If Button Prev touched
@@ -1493,14 +1507,14 @@ void  sync_prevPushCallback(void *ptr) // If Button Prev touched
     }
   } else if (ALLIGN_TYPE == 1)
   {
-    do_kolko = 9; // 9 Pages of Stars
+    do_kolko = 8; // 8 Pages of Stars
     STARS_PAGER -= 1;
     if (STARS_PAGER <= 0)
     {
       STARS_PAGER = 0;
     }
   }
-  Serial.println("Stars Pager = ");
+  Serial.print("Stars Pager = ");
   Serial.println(STARS_PAGER);
 }
 
