@@ -6,7 +6,7 @@
 //    the Free Software Foundation, either version 3 of the License, or
 //    any later version.
 //
-//    PROJECT Website: http://rduinoscope.tk/
+//    PROJECT Website: http://rduinoscope.tk
 //
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -109,19 +109,19 @@ void drawClockScreen()
   if (isSummerTime) {
     Summer_Time = 1;
     btdst.setValue (1);
-    Serial1.print("wepo 1,30");  // Change page boot To Night Mode
+    Serial1.print("wepo 1,30");  // Change page Time To Night Mode
     Serial1.write(0xff);
     Serial1.write(0xff);
     Serial1.write(0xff);
   } else {
     Summer_Time = 0;
     btdst.setValue (0);
-    Serial1.print("wepo 0,30");  // Change page boot To Night Mode
+    Serial1.print("wepo 0,30");  // Change page Time To Night Mode
     Serial1.write(0xff);
     Serial1.write(0xff);
     Serial1.write(0xff);
   }
-
+  IS_Time_Changed = false;
   Time_page.show();
 }
 
