@@ -37,7 +37,7 @@
 // Make sure you edit the NexConfig.h file on the library folder to set the correct serial port for the display.
 // By default it's set to Serial1.
 
-const String FirmwareDate = "10/4/2020";
+const String FirmwareDate = "16/2/2020";
 const String FirmwareNumber = "v2.3.1 Boiana-EQ-Nextion-Solar&AutoGuiding";
 const String FirmwareName = "rDUINOScope Boiana-EQ V2.3.1";
 const String FirmwareTime = "12:00:00";
@@ -217,6 +217,7 @@ boolean IS_FAN1_ON = true;
 boolean IS_FAN2_ON = true;
 boolean IS_CUSTOM_MAP_SELECTED = false;
 boolean IS_SOUND_ON = true;
+boolean IS_Time_Changed = false;
 int TFT_Brightness = 255;
 String TFT_Time = "AL-ON";
 int TFTBright = DAC0;
@@ -360,7 +361,18 @@ NexNumber day_set = NexNumber(2, 4, "day_set");
 NexNumber month_set = NexNumber(2, 5, "month_set");
 NexNumber year_set = NexNumber(2, 6, "year_set");
 NexDSButton btdst = NexDSButton(2, 28, "btdst");
-
+NexButton day_up  = NexButton(2, 10, "day_up");
+NexButton day_down  = NexButton(2, 16, "day_down");
+NexButton month_up  = NexButton(2, 11, "month_up");
+NexButton month_down  = NexButton(2, 17, "month_down");
+NexButton year_up  = NexButton(2, 12, "year_up");
+NexButton year_down  = NexButton(2, 18, "year_down");
+NexButton hour_up  = NexButton(2, 13, "hour_up");
+NexButton hour_down  = NexButton(2, 19, "hour_down");
+NexButton minute_up  = NexButton(2, 14, "minute_up");
+NexButton minute_down  = NexButton(2, 20, "minute_down");
+NexButton second_up  = NexButton(2, 15, "second_up");
+NexButton second_down  = NexButton(2, 21, "second_down");
 
 // Autoguiding Page Components
 NexButton Guiding_back = NexButton(12, 2, "Guiding_back");
@@ -567,7 +579,19 @@ NexTouch *nex_listen_list[] =
   // Time Page Components
   &save_button,
   &btdst,
-
+  &day_up,
+  &day_down,
+  &month_up,
+  &month_down,
+  &year_up,
+  &year_down,
+  &hour_up,
+  &hour_down,
+  &minute_up,
+  &minute_down,
+  &second_up,
+  &second_down,
+  
   // STAT Page Components
   &stat_back,
 
